@@ -1,3 +1,18 @@
+java installation 
+System Update:
+sudo apt update 
+sudo apt upgrade -y 
+
+Java Installation steps:
+sudo apt install openjdk-17-jdk -y 
+java -version 
+
+jenkins installation
+echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt update
+sudo apt install jenkins
+
+8th
 git config --global user.email 'kepa23cs@cmrit.ac.in'
 git config --global user.name 'Keerti-04'
 ssh-keygen -t ed25519 -C "kepa23cs@cmrit.ac.in"
@@ -19,7 +34,7 @@ pipeline{
         stage('Checkout')
         {
             steps{
-                git branch: 'master' , url: 'https://github.com/Keerti-04/program8.git'
+                git branch: 'master' , url: 'https://github.com/Keerti-04/prog8.git'
             }
         }
         stage('Build')
@@ -46,12 +61,13 @@ pipeline{
             steps{
                 sh """
                 export ANSIBLE_HOST_KEY_CHECKING=False
-                ansible-playbook -i host.ini p8.yml
+                ansible-playbook -i host.ini p8.yml --extra-vars='ansible_become_pass=2004'
                 """
             }
         }
     }
 }
+
 
 
 yml 
